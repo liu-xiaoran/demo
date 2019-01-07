@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自动延长的Input</title>
+    <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script>
+    <script>
+        var vConsole = new VConsole();
+    </script>
+    <style>
+        .tValue{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <p>自动延长的input框</p>
+    <textarea id="tValue" class="tValue"></textarea>
+    <script>
+        var textArea = document.getElementById("tValue");
+
+        textArea.oninput = function(){
+            autoHeight(textArea);
+        };
+
+        function autoHeight(element){ 
+            
+            element.style.height='auto'; 
+            element.style.height=element.scrollHeight+'px'; 
+        }; 
+
+    </script>
+</body>
+</html>
