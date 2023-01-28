@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class JavaTestApplicationTests {
@@ -16,8 +20,16 @@ class JavaTestApplicationTests {
 
 //        testStrHashmap();
 
+        testThreadPoolExecutor();
 
+    }
 
+    private void testThreadPoolExecutor(){
+
+        BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(5,10, 1000, TimeUnit.SECONDS,
+                queue);
 
     }
 
