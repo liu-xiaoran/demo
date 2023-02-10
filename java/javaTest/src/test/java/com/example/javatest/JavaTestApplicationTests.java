@@ -3,6 +3,7 @@ package com.example.javatest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -21,6 +22,24 @@ class JavaTestApplicationTests {
 //        testStrHashmap();
 
         testThreadPoolExecutor();
+
+    }
+
+    private <T,U> T[] arrayCopy(U[] original, int newLength, Class<? extends T[]> newType){
+
+        /*src – the source array.
+                srcPos – starting position in the source array.
+        dest – the destination array.
+                destPos – starting position in the destination data.
+        length – the number of array elements to be copied.*/
+
+
+        T[] copy = ((Object)newType == (Object)Object[].class)
+                ? (T[]) new Object[newLength]
+                : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        System.arraycopy(original, 0, copy, 0,
+                Math.min(original.length, newLength));
+        return copy;
 
     }
 
