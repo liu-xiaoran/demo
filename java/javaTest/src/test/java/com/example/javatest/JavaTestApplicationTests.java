@@ -1,10 +1,14 @@
 package com.example.javatest;
 
+
+import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.beans.BeanMap;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -24,6 +28,31 @@ class JavaTestApplicationTests {
         testThreadPoolExecutor();
 
     }
+
+
+    public static <T> Map<String, Object> beanToMap(T bean) {
+        Map<String, Object> map = Maps.newHashMap();
+        if (bean != null) {
+            BeanMap beanMap = BeanMap.create(bean);
+            for (Object key : beanMap.keySet()) {
+                Object value = beanMap.get(key);
+                map.put(key + "", value);
+            }
+        }
+        return map;
+    }
+
+    /**
+     * 将map转换为javabean对象
+     */
+    public static <T> T mapToBean(Map<String, Object> map, T bean) {
+        if (map != null) {
+            BeanMap beanMap = BeanMap.create(bean);
+            beanMap.putAll(map);
+        }
+        return bean;
+    }
+
 
     private <T,U> T[] arrayCopy(U[] original, int newLength, Class<? extends T[]> newType){
 
