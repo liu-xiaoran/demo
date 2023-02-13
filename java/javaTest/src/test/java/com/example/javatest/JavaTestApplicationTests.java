@@ -3,6 +3,7 @@ package com.example.javatest;
 
 import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cglib.beans.BeanMap;
 
@@ -25,10 +26,17 @@ class JavaTestApplicationTests {
 
 //        testStrHashmap();
 
-        testThreadPoolExecutor();
+//        testThreadPoolExecutor();
 
     }
 
+
+    public static <T,V> V beanUtilsConvert(T source) {
+        V target = null;
+        BeanUtils.copyProperties(source, target);
+        
+        return target;
+    }
 
     public static <T> Map<String, Object> beanToMap(T bean) {
         Map<String, Object> map = Maps.newHashMap();
