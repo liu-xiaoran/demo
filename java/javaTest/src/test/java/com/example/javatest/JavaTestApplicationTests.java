@@ -22,7 +22,7 @@ class JavaTestApplicationTests {
     void contextLoads() {
         System.out.println("start");
 
-//        testStr();
+        testStr();
 
 //        testStrHashmap();
 
@@ -31,10 +31,10 @@ class JavaTestApplicationTests {
     }
 
 
-    public static <T,V> V beanUtilsConvert(T source) {
+    public static <T, V> V beanUtilsConvert(T source) {
         V target = null;
         BeanUtils.copyProperties(source, target);
-        
+
         return target;
     }
 
@@ -62,7 +62,7 @@ class JavaTestApplicationTests {
     }
 
 
-    private <T,U> T[] arrayCopy(U[] original, int newLength, Class<? extends T[]> newType){
+    private <T, U> T[] arrayCopy(U[] original, int newLength, Class<? extends T[]> newType) {
 
         /*src – the source array.
                 srcPos – starting position in the source array.
@@ -71,7 +71,7 @@ class JavaTestApplicationTests {
         length – the number of array elements to be copied.*/
 
 
-        T[] copy = ((Object)newType == (Object)Object[].class)
+        T[] copy = ((Object) newType == (Object) Object[].class)
                 ? (T[]) new Object[newLength]
                 : (T[]) Array.newInstance(newType.getComponentType(), newLength);
         System.arraycopy(original, 0, copy, 0,
@@ -80,16 +80,16 @@ class JavaTestApplicationTests {
 
     }
 
-    private void testThreadPoolExecutor(){
+    private void testThreadPoolExecutor() {
 
         BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
 
-        ThreadPoolExecutor pool = new ThreadPoolExecutor(5,10, 1000, TimeUnit.SECONDS,
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(5, 10, 1000, TimeUnit.SECONDS,
                 queue);
 
     }
 
-    private void testStrHashmap(){
+    private void testStrHashmap() {
         String a = "t1";
 
         HashMap map = new HashMap<String, String>();
@@ -100,17 +100,19 @@ class JavaTestApplicationTests {
 
         System.out.println(map.get(a).toString());
 
-        System.out.println(a==b);
+        System.out.println(a == b);
 
         System.out.println(map.get(b).toString());
     }
 
-    private void testStr(){
+    private void testStr() {
         String a = "t3";
 
         String b = new String("t3");
 
-        String c = "t31".substring(0,2);
+        String c = "t31".substring(0, 2);
+
+        String d = "t3";
 
         System.out.println(c);
 
@@ -123,6 +125,8 @@ class JavaTestApplicationTests {
         System.out.println(a == c);
 
         System.out.println(a.equals(c));
+
+        System.out.println(a == d);
     }
 
 
